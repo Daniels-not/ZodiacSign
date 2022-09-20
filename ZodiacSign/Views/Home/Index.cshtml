@@ -1,0 +1,49 @@
+﻿@*Strong typed*@
+@model Application.Models.ZodiacSignModel
+@{
+	ViewData["Title"] = "Home Page";
+	int counter = 0;
+}
+<h2 class="heading text-center display-2">Zodiac Signs</h2>
+
+	<hr>
+
+	<div class="container">
+
+		<form method="post" asp-controller="Home" asp-action="Calculate">
+			<div class="main">
+				<div class="row">
+				<div class="col-sm-6">
+						<div class="input-group mb-3">
+							<div class="input-group-prepend">
+								<span class="input-group-text">Day</span>
+							</div>
+							<input type="number" required min="0" max="31" asp-for="day" class="form-control searchBox" />
+						</div>
+					</div>
+					<div class="col-sm-6">
+						<div class="input-group mb-3">
+							<div class="input-group-prepend">
+								<span class="input-group-text">Month</span>
+							</div>
+						<select class="form-control from" id="sel1" asp-for="month" required>
+								<option value="">Select One …</option>
+								@for(int i = 1; i < 13; i ++) {
+								<option value="@i">@i</option>
+								}
+						</select>
+						</div>
+					</div>
+				</div>
+
+				<div class="text-center">
+					<!-- calculate button -->
+					<button class="btn btn-primary convert m-2" type="submit">Zodiac Sign</button>
+				</div>
+
+			</div>
+		</form>
+
+		<!-- Display the results -->
+		<h2 class="text-center">Zodiac sign: @Model.results</h2>
+	</div>
